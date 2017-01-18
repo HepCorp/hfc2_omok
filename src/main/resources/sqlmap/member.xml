@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+ 
+	<select id="loginSelect" parameterType="string" resultType="memberVO">
+	<![CDATA[
+		SELECT TOP 1
+		       A.MEMBER_NO
+		     , A.USER_NAME
+		     , A.USER_PWD
+		     , A.MONEY
+		     , A.IP
+		     , A.INPUT_DT
+		     , A.LAST_DT
+		  FROM HFC.HFC_MEMBER A
+		 WHERE A.USER_EMAIL = #{user_email}
+	]]>
+	</select>
+</mapper>
