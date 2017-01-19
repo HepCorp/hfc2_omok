@@ -1,0 +1,57 @@
+/* body */
+body { width: 100%; height: 100vh; background: url("/hfc2_html_v1/images/game-bg.png") no-repeat center; background-size: cover;}
+/* //body */
+
+/* header */
+header { width: 100%; height: 50px; background-color: rgba(0, 0, 0, 0.4);}
+nav { width: 1024px; height: 50px; line-height: 50px; margin: 0 auto;}
+.winningRate { height: 50px; float: left; margin-left: 30px;}
+.winningRate ul { height: 50px;}
+.winningRate ul li { font-size: 14px; color: #FFFFFF; margin-right: 20px; float: left;}
+.winningRate ul li:last-child { margin-right: 0;}
+.loginInfo { height: 50px; float: right; margin-right: 30px;}
+.loginInfo ul { height: 50px;}
+.loginInfo ul li { font-size: 14px; color: #FFFFFF; margin-left: 20px; float: left;}
+.loginInfo ul li:first-child { margin-left: 0; font-weight: 500;}
+.loginInfo ul li a { color: #FFFFFF;}
+/* //header */
+
+/* section */
+#gameWrap { width: 1024px; height: calc(100vh - 50px); margin: 0 auto; background-color: crimson;}
+
+/* gameContents */
+.gameContents { position: absolute; width: 1024px; height: 718px; top: 50%; margin: -334px auto; background-color: aqua;}
+.gameSection { width: 970px; height: 646px; margin: 60px auto; background-color: blueviolet;}
+
+/* game */
+.gameTop { width: 646px; height: 34px;}
+.gameLeft { width: 34px; height: 646px; display: inline; float: left; margin-top: -34px;}
+.game { width: 612px; height: 612px; float: left; background-color: #FFFFFF;}
+.game table { width: 612px; height: 612px; border-collapse: inherit;}
+.game table tbody tr td { width: 60px; height: 60px; line-height: 60px; text-align: center;}
+.game table tbody tr td img { vertical-align: middle;}
+.game table tbody tr td.green { background-color: rgba(133, 175, 75, 0.6);}
+.nowPlay { background: url("/hfc2_html_v1/images/now-position.png")no-repeat center; color: #FF8B00; font-weight: 500;}
+/* //game */
+
+/* qnaWrap */
+.qnaWrap { width: 300px; height: 646px; background-color: #FFFFFF; float: right; margin-top: -34px;}
+.qnaWrap h2 { width: 60px; height: 60px; line-height: 60px; margin: 30px auto 10px; color: #FF8B00; font-weight: 500; text-align: center; background: url("/hfc2_html_v1/images/title-bg.png") no-repeat center;}
+.qna { width: 250px; height: 200px; margin: 0 auto;}
+.questionBox { display: inline-block; width: 250px;}
+.questionBox h3 { font-size: 30px; color: #617F38; float: left; font-family: Helvetica, Arial; font-weight: bold;}
+.questionBox span { width: 220px; font-size: 18px; line-height: 20px; color: #333333; float: right; margin-bottom: 10px;}
+.questionBox a { display: inline-block; right: 12px; float: right; margin-bottom: 20px;}
+.questionBox a img { width: 20px; height: 20px; margin-right: 10px;}
+.answerBox { display: inline-block; width: 250px;}
+.answerBox h3 { font-size: 30px; color: #617F38; float: left; font-family: Helvetica, Arial; font-weight: bold;}
+.answerBox form { width: 220px; float: right;  border-bottom: 3px dashed #617F38; margin-bottom: 20px;}
+.answerBox form input[type=text] { width: 220px; height: 30px; border: none;}
+.submitBox { width: 250px; height: 30px;}
+.submitBox form { width: 85px; height: 30px; float: right;}
+.submitBox form input[type=submit] { width: 85px; height: 30px; background-color: #85AF4B; color: #FFFFFF; border: none;  font-size: 14px;}
+
+/* qnaWrap */
+/* //gameContents */
+/* //section*/
+
