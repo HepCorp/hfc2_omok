@@ -13,8 +13,54 @@ public class MemberVO {
 	Date input_dt;
 	Date last_dt;
 
+	int match;
+	int win;
+	int lose;
+	int draw;
+	int winner_rate;
+
+	public int getMatch() {
+		return match;
+	}
+
+	public void setMatch(int match) {
+		this.match = match;
+	}
+
+	public int getWin() {
+		return win;
+	}
+
+	public void setWin(int win) {
+		this.win = win;
+	}
+
+	public int getLose() {
+		return lose;
+	}
+
+	public void setLose(int lose) {
+		this.lose = lose;
+	}
+
+	public int getDraw() {
+		return draw;
+	}
+
+	public void setDraw(int draw) {
+		this.draw = draw;
+	}
+
+	public int getWinner_rate() {
+		return winner_rate;
+	}
+
+	public void setWinner_rate(int winner_rate) {
+		this.winner_rate = winner_rate;
+	}
+
 	public MemberVO(int member_no, String user_name, String user_email, String user_pwd, int money, String ip,
-			Date input_dt, Date last_dt) {
+			Date input_dt, Date last_dt, int match, int win, int lose, int draw, int winner_rate) {
 		super();
 		this.member_no = member_no;
 		this.user_name = user_name;
@@ -24,6 +70,11 @@ public class MemberVO {
 		this.ip = ip;
 		this.input_dt = input_dt;
 		this.last_dt = last_dt;
+		this.match = match;
+		this.win = win;
+		this.lose = lose;
+		this.draw = draw;
+		this.winner_rate = winner_rate;
 	}
 
 	public MemberVO() {

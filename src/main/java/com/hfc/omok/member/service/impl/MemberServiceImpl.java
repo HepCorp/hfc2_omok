@@ -24,4 +24,9 @@ public class MemberServiceImpl implements MemberService {
 		dao.logInsert(vo);
 	}
 
+	@Override
+	public void omokInsert(int member_no) {
+		dao.omokInsert(member_no);
+	}
+
 }

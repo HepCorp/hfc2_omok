@@ -33,6 +33,7 @@ public class MemberController {
 	@RequestMapping(value="/index.do", method=RequestMethod.GET)
 	public String index(HttpSession session){
 		session.removeAttribute("memberVO2");
+		//session.invalidate();
 		
 		return "/index";
 	}
@@ -51,6 +52,7 @@ public class MemberController {
 		memberVO.setIp(request.getRemoteAddr());
 		
 		service.logInsert(memberVO);
+		service.omokInsert(memberVO.getMember_no());
 		session.setAttribute("memberVO2", memberVO);
 		
 		return "redirect:/game/index.do";
@@ -59,6 +61,7 @@ public class MemberController {
 	@RequestMapping(value="/logout.do")
 	public String logout(HttpSession session){
 		session.removeAttribute("memberVO2");
+		//session.invalidate();
 
 		return "redirect:/index.do";
 	}

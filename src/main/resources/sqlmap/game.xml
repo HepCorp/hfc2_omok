@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gameMapper">
+
+	<select id="gameSelect" parameterType="Integer" resultType="gameVO">
+	<![CDATA[
+		SELECT A.GAME_NO
+		     , A.B_MEMBER_NO
+		     , A.W_MEMBER_NO
+		  FROM HFC.HFC_OMOK_GAME A
+		 WHERE A.B_MEMBER_NO = #{member_no}
+		   AND A.VICTORY IS NULL	
+	]]>
+	</select>
+	
+	<select id="cellAllSelect" resultType="java.util.HashMap">
+	<![CDATA[
+		SELECT A.CELL_NO
+			 , A.CELL_ROW
+			 , A.CELL_NM
+			 , A.QNA_NO
+			 , B.B_MEMBER_NO
+			 , B.W_MEMBER_NO
+		  FROM HFC.HFC_OMOK_CELL A
+		       LEFT OUTER JOIN HFC.HFC_OMOK_HISTORY B ON (A.CELL_NO = B.CELL_NO AND B.GAME_NO = 2)
+		 ORDER BY A.CELL_ROW, CELL_COL
+	]]>
+	</select>
+	
+	<select id="qnaSelect" resultType="java.util.HashMap" parameterType="Integer">
+	<![CDATA[
+		SELECT A.CELL_NO
+		     , A.CELL_NM
+			 , B.QNA_NO
+			 , B.QUESTION
+			 , B.ANSWER
+			 , B.ATTACH_TYPE
+			 , B.ATTACH_FILE
+		  FROM HFC.HFC_OMOK_CELL A
+		       LEFT OUTER JOIN HFC.HFC_QNA B ON (A.QNA_NO = B.QNA_NO AND B.DEL_YN = 0)
+		 WHERE A.CELL_NO = #{cell_no}	
+	]]>
+	</select>
+</mapper>

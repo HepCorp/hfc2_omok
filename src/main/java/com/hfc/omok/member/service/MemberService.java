@@ -20,4 +20,11 @@ public interface MemberService {
 	 */
 	public void logInsert(MemberVO vo);
 
+	/**
+	 * 로그인시 오목회원 없는 사람 추
+	 * @param int - 회원번가 담긴 member_no
+	 * @return void
+	 * @exception Exception
+	 */
+	public void omokInsert(int member_no);
 }

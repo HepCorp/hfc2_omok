@@ -36,3 +36,37 @@ function logout(){
 		return false;
 	}
 }
+
+/**
+ * name : contextPath
+ * Author : ysy
+ * Date : 2016-02-02
+ * Description : 전체 컨텍스트패스를 함수로 지정해 사용, 변경시 함께 변경하여 줌.
+ */
+var contextPath = "/omok/";
+
+/**
+ * name : color
+ * Author : ysy
+ * Date : 2016-02-02
+ * Description : 현재 돌의 색깔을 표시
+ */
+var stone = "black";
+
+/**
+ * name : changeStone
+ * Author : ysy
+ * Date : 2016-02-02
+ * Description : 돌의 색깔을 변경
+ */
+function changeStone(col){
+	if (col == "black"){
+		stone = "white";
+		$("#black").toggleClass("off", "on");
+		$("#white").toggleClass("on", "off")
+	} else {
+		stone = "black";
+		$("#black").toggleClass("off", "on");
+		$("#white").toggleClass("on", "off");
+	}
+}

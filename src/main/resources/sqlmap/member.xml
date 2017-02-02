@@ -8,11 +8,16 @@
 		       A.MEMBER_NO
 		     , A.USER_NAME
 		     , A.USER_PWD
-		     , A.MONEY
 		     , A.IP
-		     , A.INPUT_DT
-		     , A.LAST_DT
+		     , ISNULL(B.INPUT_DT, A.INPUT_DT) INPUT_DT
+		     , ISNULL(B.TIME_STAMP, A.LAST_DT) LAST_DT
+		     , ISNULL(B.MATCH, 0) MATCH
+		     , ISNULL(B.WIN, 0) WIN
+		     , ISNULL(B.LOSE, 0) LOSE
+		     , ISNULL(B.DRAW, 0) DRAW
+		     , ISNULL(B.WINNER_RATE, 0) WINNER_RATE
 		  FROM HFC.HFC_MEMBER A
+		       LEFT OUTER JOIN HFC.HFC_MEMBER_OMOK B ON (A.MEMBER_NO = B.MEMBER_NO)
 		 WHERE A.USER_EMAIL = #{user_email}
 	]]>
 	</select>
@@ -21,6 +26,17 @@
 	<![CDATA[
 		INSERT INTO HFC.HFC_MEMBER_LOG (MEMBER_NO, IP)
 		VALUES (#{member_no}, #{ip})
+	]]>
+	</insert>
+	
+	<insert id="omokInsert" parameterType="Integer">
+	<![CDATA[
+		INSERT INTO HFC.HFC_MEMBER_OMOK (MEMBER_NO)
+		SELECT A.MEMBER_NO
+		  FROM HFC.HFC_MEMBER A
+		       LEFT OUTER JOIN HFC.HFC_MEMBER_OMOK B ON (A.MEMBER_NO = B.MEMBER_NO)
+		 WHERE A.MEMBER_NO = #{member_no}
+		   AND B.MEMBER_NO IS NULL
 	]]>
 	</insert>
 	

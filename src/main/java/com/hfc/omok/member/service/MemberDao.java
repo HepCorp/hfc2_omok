@@ -22,5 +22,9 @@ public class MemberDao {
 	public void logInsert(MemberVO vo){
 		session.insert(namespace +"logInsert", vo);
 	}
+	
+	public void omokInsert(int member_no){
+		session.insert(namespace +"omokInsert", member_no);
+	}
 
 }

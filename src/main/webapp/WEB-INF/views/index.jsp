@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/inc/headerBase.jsp"%>
 <c:set var="browserTitle" value="HFC-해커인증시스템" />
 <c:set var="menuTitle" value="로그인" />
-<c:set var="fileName" value="index.jsp" />
+<c:set var="fileName" value="index.do" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>

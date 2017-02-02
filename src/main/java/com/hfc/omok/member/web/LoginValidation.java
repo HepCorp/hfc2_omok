@@ -67,9 +67,13 @@ public class LoginValidation extends ParamValidatChk implements Validator {
 		}
 		inVO.setMember_no(outVO.getMember_no());
 		inVO.setUser_name(outVO.getUser_name());
-		inVO.setMoney(outVO.getMoney());
  		inVO.setIp(outVO.getIp());
 		inVO.setInput_dt(outVO.getInput_dt());
 		inVO.setLast_dt(outVO.getLast_dt());
+		inVO.setMatch(outVO.getMatch());
+		inVO.setWin(outVO.getWin());
+		inVO.setLose(outVO.getLose());
+		inVO.setDraw(outVO.getDraw());
+		inVO.setWinner_rate(outVO.getWinner_rate());
 	}
 }
