@@ -9,7 +9,9 @@ public class HistoryVO {
 	private int b_member_no;
 	private int w_member_no;
 	private int cell_no;
-	private boolean corrent_yn;
+	private String stone;
+	private String answer;
+	private boolean correct_yn;
 	private Date input_dt;
 
 	public HistoryVO() {
@@ -17,16 +19,34 @@ public class HistoryVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HistoryVO(int history_no, int game_no, int b_member_no, int w_member_no, int cell_no, boolean corrent_yn,
-			Date input_dt) {
+	public HistoryVO(int history_no, int game_no, int b_member_no, int w_member_no, int cell_no, String stone,
+			String answer, boolean correct_yn, Date input_dt) {
 		super();
 		this.history_no = history_no;
 		this.game_no = game_no;
 		this.b_member_no = b_member_no;
 		this.w_member_no = w_member_no;
 		this.cell_no = cell_no;
-		this.corrent_yn = corrent_yn;
+		this.stone = stone;
+		this.answer = answer;
+		this.correct_yn = correct_yn;
 		this.input_dt = input_dt;
+	}
+
+	public String getStone() {
+		return stone;
+	}
+
+	public void setStone(String stone) {
+		this.stone = stone;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 
 	public int getHistory_no() {
@@ -69,12 +89,12 @@ public class HistoryVO {
 		this.cell_no = cell_no;
 	}
 
-	public boolean isCorrent_yn() {
-		return corrent_yn;
+	public boolean getCorrect_yn() {
+		return correct_yn;
 	}
 
-	public void setCorrent_yn(boolean corrent_yn) {
-		this.corrent_yn = corrent_yn;
+	public void setCorrect_yn(boolean correct_yn) {
+		this.correct_yn = correct_yn;
 	}
 
 	public Date getInput_dt() {
@@ -88,8 +108,8 @@ public class HistoryVO {
 	@Override
 	public String toString() {
 		return "HistoryVO [history_no=" + history_no + ", game_no=" + game_no + ", b_member_no=" + b_member_no
-				+ ", w_member_no=" + w_member_no + ", cell_no=" + cell_no + ", corrent_yn=" + corrent_yn + ", input_dt="
-				+ input_dt + "]";
+				+ ", w_member_no=" + w_member_no + ", cell_no=" + cell_no + ", answer=" + answer + ", correct_yn="
+				+ correct_yn + ", input_dt=" + input_dt + "]";
 	}
 
 }

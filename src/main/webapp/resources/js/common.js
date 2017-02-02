@@ -46,14 +46,6 @@ function logout(){
 var contextPath = "/omok/";
 
 /**
- * name : color
- * Author : ysy
- * Date : 2016-02-02
- * Description : 현재 돌의 색깔을 표시
- */
-var stone = "black";
-
-/**
  * name : changeStone
  * Author : ysy
  * Date : 2016-02-02

@@ -9,19 +9,29 @@ public class GameVO {
 	private int w_member_no;
 	private int victory;
 	private Date input_dt;
+	private String stone;
 
-	public GameVO(int game_no, int b_member_no, int w_member_no, int victory, Date input_dt) {
+	public GameVO(int game_no, int b_member_no, int w_member_no, int victory, Date input_dt, String stone) {
 		super();
 		this.game_no = game_no;
 		this.b_member_no = b_member_no;
 		this.w_member_no = w_member_no;
 		this.victory = victory;
 		this.input_dt = input_dt;
+		this.stone = stone;
 	}
 
 	public GameVO() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getStone() {
+		return stone;
+	}
+
+	public void setStone(String stone) {
+		this.stone = stone;
 	}
 
 	public int getGame_no() {

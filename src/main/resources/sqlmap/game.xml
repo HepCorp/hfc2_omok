@@ -13,7 +13,7 @@
 	]]>
 	</select>
 	
-	<select id="cellAllSelect" resultType="java.util.HashMap">
+	<select id="cellAllSelect" resultType="java.util.HashMap" parameterType="Integer">
 	<![CDATA[
 		SELECT A.CELL_NO
 			 , A.CELL_ROW
@@ -21,8 +21,9 @@
 			 , A.QNA_NO
 			 , B.B_MEMBER_NO
 			 , B.W_MEMBER_NO
+			 , B.STONE
 		  FROM HFC.HFC_OMOK_CELL A
-		       LEFT OUTER JOIN HFC.HFC_OMOK_HISTORY B ON (A.CELL_NO = B.CELL_NO AND B.GAME_NO = 2)
+		       LEFT OUTER JOIN HFC.HFC_OMOK_HISTORY B ON (A.CELL_NO = B.CELL_NO AND B.GAME_NO = #{game_no} AND B.CORRECT_YN=1)
 		 ORDER BY A.CELL_ROW, CELL_COL
 	]]>
 	</select>
@@ -41,4 +42,24 @@
 		 WHERE A.CELL_NO = #{cell_no}	
 	]]>
 	</select>
+	
+	<insert id="historyInsert" parameterType="historyVO">
+	<![CDATA[
+		INSERT INTO HFC.HFC_OMOK_HISTORY (
+			   GAME_NO
+			 , B_MEMBER_NO
+			 , W_MEMBER_NO
+			 , CELL_NO
+			 , STONE
+			 , CORRECT_YN
+		) VALUES (
+			   #{game_no}
+			 , #{b_member_no}
+			 , #{w_member_no}
+			 , #{cell_no}
+			 , #{stone}
+			 , #{correct_yn}
+		)	
+	]]>
+	</insert>
 </mapper>

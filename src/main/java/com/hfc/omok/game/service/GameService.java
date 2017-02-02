@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.hfc.omok.game.GameVO;
+import com.hfc.omok.game.HistoryVO;
 
 public interface GameService {
 	
@@ -21,7 +22,7 @@ public interface GameService {
 	 * @return List<HashMap<String, Object>> - 셀 정보(HashMap) 목
 	 * @exception Exception
 	 */
-	public List<HashMap<String, Object>> cellAllSelect();
+	public List<HashMap<String, Object>> cellAllSelect(int game_no);
 	
 	/**
 	 * 문제불러오기
@@ -31,4 +32,13 @@ public interface GameService {
 	 * @exception Exception
 	 */
 	public HashMap<String, Object> qnaSelect(int cell_no);
+	
+	/**
+	 * 히스토리 저장
+	 * @param HistoryVO
+	 * @return void
+	 * @author rachel
+	 * @exception Exception
+	 */
+	public void historyInsert(HistoryVO vo);
 }

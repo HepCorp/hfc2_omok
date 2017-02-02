@@ -4,6 +4,7 @@
     <typeAliases>
     	<typeAlias type="com.hfc.omok.member.MemberVO" alias="memberVO" />
     	<typeAlias type="com.hfc.omok.game.GameVO" alias="gameVO" />
+    	<typeAlias type="com.hfc.omok.game.HistoryVO" alias="historyVO" />
     </typeAliases>
  
     <typeHandlers>

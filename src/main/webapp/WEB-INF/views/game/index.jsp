@@ -9,6 +9,16 @@
 <%@ include file="/resources/include/header.jsp"%>
 <script type="text/javascript" charset="UTF-8" src="<c:url value="/resources/js/game.js" />"></script>
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/css/game.css" />">
+<script type="text/javascript">
+function FormChkModule(f){
+	if (f.answer.value == ""){
+		alert("<spring:message code='field.required.user_answer' />");
+		f.answer.focus();
+		return false;
+	}
+	return true;
+}
+</script>
 </head>
 <body>
 <!-- header -->
@@ -37,7 +47,7 @@
         <div class="gameSection">
             <article>
                 <!-- game -->
-                <div class="gameTop"">
+                <div class="gameTop">
                     <img src="<c:url value="/resources/images/thead-bg.png" />" alt="게임가로줄">
                 </div>
                 <div class="gameLeft">
@@ -68,9 +78,9 @@
                     	<c:forEach var="cell" items="${cell }" varStatus="status">
                     		<c:if test="${status.index == 0 || status.index % 10 == 0 }"><tr></c:if>
                     			<c:choose>
-                    			<c:when test="${cell.B_MEMBER_NO != null }"><td><span class="bigBlack"></span></td></c:when>
-                    			<c:when test="${cell.W_MEMBER_NO != null }"><td><span class="bigWhite"></span></td></c:when>
-                    			<c:when test="${cell.QNA_NO != null }"><td data="${cell.CELL_NO }" name="${cell.CELL_NM }"></td></c:when>
+                    			<c:when test="${cell.STONE == 'B' }"><td><span class="bigBlack"></span></td></c:when>
+                    			<c:when test="${cell.STONE == 'W' }"><td><span class="bigWhite"></span></td></c:when>
+                    			<c:when test="${cell.QNA_NO != null }"><td data="${cell.CELL_NO }" name="${cell.CELL_NM }" stone="${game.stone }"></td></c:when>
                     			<c:otherwise><td></td></c:otherwise>
                     			</c:choose>
                     		<c:if test="${status.index % 10 == 9 }"></tr></c:if>
@@ -96,24 +106,34 @@
                         <div class="questionBox">
                             <h3>Q.</h3>
                             <span>Etiam sit amet sapien ornare, dictum justo non, bibendum justo?</span>
-                            <a><img src="<c:url value="/resources/images/download-icon.png" />" alt="다운로드 아이콘">attatch.txt</a>
+                            <%-- <a><img src="<c:url value="/resources/images/download-icon.png" />" alt="다운로드 아이콘">attatch.txt</a> --%>
                         </div>
 
+                        <form name="saveFrm" method="post" action="<c:url value='/game/save.do' />" class="form" onSubmit="return FormChkModule(this);">
+                        <fieldset>
+                        <legend>답 제출</legend>
+                        <input type="hidden" name="game_no" value="${game.game_no }" />
+                        <input type="hidden" name="cell_no" />
+                        <input type="hidden" name="qna_no" />
+                        <input type="hidden" name="b_member_no" value="${game.b_member_no }" />
+                        <input type="hidden" name="w_member_no" value="${game.w_member_no }" />
                         <div class="answerBox">
                             <h3>A.</h3>
-                            <form>
-                                <label for="answer">
-                                    <input type="text" id="answer" name="answer" placeholder="답을 적어주세요.(단답식)">
-                                </label>
-                            </form>
+                            <span>
+	                            <label for="answer">
+	                                <input type="text" id="answer" name="answer" placeholder="답을 적어주세요.(단답식)">
+	                            </label>
+                            </span>
                         </div>
                         <div class="submitBox">
-                            <form>
-                                <label for="submit">
-                                    <input type="submit" id="submit" name="sumit" value="제출하기">
-                                </label>
-                            </form>
+                        	<span>
+	                            <label for="submit">
+	                                <input type="submit" id="submit" name="submit" value="제출하기">
+	                            </label>
+                            </span>
                         </div>
+                        </fieldset>
+                        </form>
                     </div>
                 </section>
                 <!-- //qnaWrap -->
@@ -122,8 +142,8 @@
                     <article class="nowTurn">
                         <span id="player1">홍길동</span>
                         <span class="smallBlack"></span>
-                        <span id="black" class="on"><img src="<c:url value="/resources/images/left.png" />" alt="왼쪽화살표"></span>
-                        <span id="white" class="on"><img src="<c:url value="/resources/images/right.png" />" alt="오른쪽화살표"></span>
+                        <span id="black" class="${game.stone == 'black'?'on':'off' }"><img src="<c:url value="/resources/images/left.png" />" alt="왼쪽화살표"></span>
+                        <span id="white" class="${game.stone == 'white'?'on':'off' }"><img src="<c:url value="/resources/images/right.png" />" alt="오른쪽화살표"></span>
                         <span class="smallWhite"></span>
                         <span id="player2">이몽룡</span>
                     </article>
