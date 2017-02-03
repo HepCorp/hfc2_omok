@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,35 +35,41 @@ public class GameController {
 	
 	GameVO game;
 	
-	private String stone = "black";
+	private String stone = "B";
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	private String main(){
 		return "redirect:/game/index.do";
 	}
 	
+	private void init(HttpSession session){
+		int member_no = getMember_no(session);
+		
+		//하던 게임이 있으면 게임을 불러오고
+		game = service.gameSelect(member_no);
+		if (game != null) {
+			//흑돌인지 흰돌인지 가지고 옴
+			stone = service.stoneSelect(game.getGame_no());
+			if (stone == null) stone = "B";
+			game.setStone(stone);
+		} else {
+			game = new GameVO();
+		}
+	}
+	
 	@RequestMapping(value="/index.do", method=RequestMethod.GET)
 	private String index(
 			  HttpSession session
 			, ModelMap model){
-		int member_no = getMember_no(session);
-		//하던 게임이 있으면 게임을 불러오고
-		game = service.gameSelect(member_no);
-		game.setStone(stone);
-		//흑돌인지 흰돌인지 가지고
-		???
-		
-		//하던 게임이 없으면 시작 화면을 불러온다
-//		game = null;
-//		if (game == null){
-//			game = new GameVO();			
-//		}
+		init(session);
 		
 		List<HashMap<String, Object>> cell = service.cellAllSelect(game.getGame_no());
+		List<HistoryVO> history = service.historySelect(game.getGame_no());
 		model.addAttribute("game", game);
 		model.addAttribute("cell", cell);
+		model.addAttribute("history", history);
 		
-		return "/game/index";		
+		return "/game/index";
 	}
 		
 	private int getMember_no(HttpSession session){
@@ -119,21 +126,24 @@ public class GameController {
 		}
 		
 		service.historyInsert(inVO);
-		if (stone.equals("black")) {
-			setStone("white");
-		} else {
-			setStone("black");
-		}
 		
 		return "redirect:/game/index.do";
 	}
-
-	public static String getStone() {
-		return stone;
-	}
-
-	public static void setStone(String stone) {
-		GameController.stone = stone;
+	
+	@RequestMapping(value="/start.do", method=RequestMethod.POST)
+	private String start(@ModelAttribute("gameVO") GameVO inVO
+			, Errors err){
+		int w_member_no = service.memberNoSelect(inVO.getW_user_email());
+		if (w_member_no == 0){
+			err.rejectValue("w_user_email", "field.error.account");
+			return "/game/index";
+		}
+		inVO.setW_member_no(w_member_no);
+		
+		service.gameInsert(inVO);
+		service.matchUpdate(inVO);
+		
+		return "redirect:/game/index.do";
 	}
 
 }

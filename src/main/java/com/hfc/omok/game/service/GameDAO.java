@@ -33,5 +33,29 @@ public class GameDAO {
 	public void historyInsert(HistoryVO vo) {
 		session.insert(namespace +"historyInsert", vo);
 	}
+
+	public String stoneSelect(Integer game_no) {
+		return session.selectOne(namespace +"stoneSelect", game_no);
+	}
+
+	public List<HistoryVO> historySelect(int game_no) {
+		return session.selectList(namespace +"historySelect", game_no);
+	}
+
+	public int memberNoSelect(String user_email) {
+		Object result = session.selectOne(namespace +"memberNoSelect", user_email);
+		if (result == null) {
+			return 0;
+		}
+		return (Integer) result;
+	}
+
+	public void gameInsert(GameVO vo) {
+		session.insert(namespace +"gameInsert", vo);
+	}
+
+	public void matchUpdate(GameVO vo) {
+		session.update(namespace +"matchUpdate", vo);
+	}
 	
 }

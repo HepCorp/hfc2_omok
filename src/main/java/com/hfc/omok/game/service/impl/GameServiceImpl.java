@@ -38,4 +38,29 @@ public class GameServiceImpl implements GameService {
 		dao.historyInsert(vo);
 	}
 
+	@Override
+	public String stoneSelect(Integer game_no) {
+		return dao.stoneSelect(game_no);
+	}
+
+	@Override
+	public List<HistoryVO> historySelect(int game_no) {
+		return dao.historySelect(game_no);
+	}
+
+	@Override
+	public int memberNoSelect(String user_email) {
+		return dao.memberNoSelect(user_email);
+	}
+
+	@Override
+	public void gameInsert(GameVO vo) {
+		dao.gameInsert(vo);
+	}
+
+	@Override
+	public void matchUpdate(GameVO vo) {
+		dao.matchUpdate(vo);
+	}
+
 }

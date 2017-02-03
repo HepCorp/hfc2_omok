@@ -9,6 +9,7 @@ public class HistoryVO {
 	private int b_member_no;
 	private int w_member_no;
 	private int cell_no;
+	private String cell_nm;
 	private String stone;
 	private String answer;
 	private boolean correct_yn;
@@ -31,6 +32,14 @@ public class HistoryVO {
 		this.answer = answer;
 		this.correct_yn = correct_yn;
 		this.input_dt = input_dt;
+	}
+
+	public String getCell_nm() {
+		return cell_nm;
+	}
+
+	public void setCell_nm(String cell_nm) {
+		this.cell_nm = cell_nm;
 	}
 
 	public String getStone() {

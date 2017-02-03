@@ -18,6 +18,21 @@ function FormChkModule(f){
 	}
 	return true;
 }
+function FormChkModule2(f){
+	if (f.w_user_email.value == "") {
+		alert("<spring:message code='field.required.email' />");
+		f.w_user_email.focus();
+		return false;
+	} else {
+		if (!pattern("email", f.w_user_email.value)){
+			alert("<spring:message code='field.error.pattern.email' />");
+			f.w_user_email.select();
+			f.w_user_email.focus();
+			return false;
+		}
+	}
+	return true;
+}
 </script>
 </head>
 <body>
@@ -54,23 +69,30 @@ function FormChkModule(f){
                     <img src="<c:url value="/resources/images/thead2-bg.png" />" alt="게임세로줄">
                 </div>
                 <div class="beforeGo"<c:if test="${game.game_no > 0 }"> style="visibility: hidden;"</c:if>>
+                 	<form name="startFrm" method="post" action="<c:url value='/game/start.do' />" class="form" onSubmit="return FormChkModule2(this);">
+                	<fieldset>
+                	<legend>게임 시작</legend>
+                	<input type="hidden" name="b_member_no" value="${memberVO2.member_no }" />
                     <div class="goBox">
                         <div class="otherPlayer">
-                            <span>대전 상대 ID</span>
-                            <form>
+                            <h2>대전 상대 이메일</h2>
+                            <span>
                                 <label for="other">
-                                    <input type="text" id="other" name="other">
+                                    <input type="email" id="other" name="w_user_email" required="required" />
+                                    <form:errors path="gameVO.w_user_email" cssClass="msgAlert" cssStyle="display:none;" />
                                 </label>
-                            </form>
+                            </span>
                         </div>
                         <div class="goStart">
-                            <form>
+                            <span>
                                 <label for="go">
-                                    <input type="button" id="go" name="go" value="GO">
+                                    <input type="submit" id="go" name="go" value="GO">
                                 </label>
-                            </form>
+                            </span>
                         </div>
                     </div>
+                    </fieldset>
+                    </form>
                 </div>
                 <div class="game">
                     <table>
@@ -140,44 +162,25 @@ function FormChkModule(f){
                 <!-- listBox -->
                 <section class="listBox">
                     <article class="nowTurn">
-                        <span id="player1">홍길동</span>
+                    	<c:if test="${game.w_user_name != null }">
+                        <span id="player1">${memberVO2.user_name }</span>
                         <span class="smallBlack"></span>
-                        <span id="black" class="${game.stone == 'black'?'on':'off' }"><img src="<c:url value="/resources/images/left.png" />" alt="왼쪽화살표"></span>
-                        <span id="white" class="${game.stone == 'white'?'on':'off' }"><img src="<c:url value="/resources/images/right.png" />" alt="오른쪽화살표"></span>
+                        <span id="black" class="${game.stone == 'B'?'on':'off' }"><img src="<c:url value="/resources/images/left.png" />" alt="왼쪽화살표"></span>
+                        <span id="white" class="${game.stone == 'W'?'on':'off' }"><img src="<c:url value="/resources/images/right.png" />" alt="오른쪽화살표"></span>
                         <span class="smallWhite"></span>
-                        <span id="player2">이몽룡</span>
+                        <span id="player2">${game.w_user_name }</span>
+                        </c:if>
                     </article>
                     <article class="historyBox">
+                    	<c:if test="${history != null }">
+                    	<c:forEach items="${history }" var="history">
                         <ul>
-                            <li class="dot"><span class="smallWhite"></span></li>
+                            <li class="dot"><span class="${history.stone == 'B'?'smallBlack':'smallWhite' }"></span></li>
                             <li class="line"><img src="<c:url value="/resources/images/line01.png" />" alt="점선"></li>
-                            <li class="dotNum">E5</li>
+                            <li class="dotNum">${history.cell_nm }</li>
                         </ul>
-                        <ul>
-                            <li class="dot"><span class="smallBlack"></span></li>
-                            <li class="line"><img src="<c:url value="/resources/images/line01.png" />" alt="점선"></li>
-                            <li class="dotNum">E6</li>
-                        </ul>
-                        <ul>
-                            <li class="dot"><span class="smallWhite"></span></li>
-                            <li class="line"><img src="<c:url value="/resources/images/line01.png" />" alt="점선"></li>
-                            <li class="dotNum">F6</li>
-                        </ul>
-                        <ul>
-                            <li class="dot"><span class="smallBlack"></span></li>
-                            <li class="line"><img src="<c:url value="/resources/images/line01.png" />" alt="점선"></li>
-                            <li class="dotNum">E6</li>
-                        </ul>
-                        <ul>
-                            <li class="dot"><span class="smallWhite"></span></li>
-                            <li class="line"><img src="<c:url value="/resources/images/line01.png" />" alt="점선"></li>
-                            <li class="dotNum">F6</li>
-                        </ul>
-                        <ul>
-                            <li class="dot"><span class="smallBlack"></span></li>
-                            <li class="line"><img src="<c:url value="/resources/images/line01.png" />" alt="점선"></li>
-                            <li class="dotNum">E6</li>
-                        </ul>
+                        </c:forEach>
+                        </c:if>
                     </article>
                 </section>
                 <!-- //listBox -->

@@ -7,7 +7,9 @@
 		SELECT A.GAME_NO
 		     , A.B_MEMBER_NO
 		     , A.W_MEMBER_NO
+		     , B.USER_NAME AS W_USER_NAME
 		  FROM HFC.HFC_OMOK_GAME A
+		       LEFT OUTER JOIN HFC.HFC_MEMBER B ON (A.W_MEMBER_NO = B.MEMBER_NO)
 		 WHERE A.B_MEMBER_NO = #{member_no}
 		   AND A.VICTORY IS NULL	
 	]]>
@@ -62,4 +64,54 @@
 		)	
 	]]>
 	</insert>
+	
+	<select id="stoneSelect" parameterType="Integer" resultType="String">
+	<![CDATA[
+		SELECT TOP 1 
+		       (CASE A.STONE WHEN 'B' THEN 'W' ELSE 'B' END) AS STONE
+		  FROM HFC.HFC_OMOK_HISTORY A
+		 WHERE A.GAME_NO = #{game_no}
+		 ORDER BY A.HISTORY_NO DESC	
+	]]>
+	</select>
+	
+	<select id="historySelect" parameterType="Integer" resultType="historyVO">
+	<![CDATA[
+		SELECT B.CELL_NM
+		     , A.STONE
+		  FROM HFC.HFC_OMOK_HISTORY A
+		       LEFT OUTER JOIN HFC.HFC_OMOK_CELL B ON (A.CELL_NO = B.CELL_NO)
+		 WHERE A.CORRECT_YN = 1
+		   AND A.GAME_NO = #{game_no}
+		 ORDER BY A.HISTORY_NO DESC	
+	]]>
+	</select>
+	
+	<select id="memberNoSelect" parameterType="String" resultType="Integer">
+	<![CDATA[
+		SELECT A.MEMBER_NO
+		  FROM HFC.HFC_MEMBER A
+		 WHERE A.USER_EMAIL = #{user_email}	
+	]]>
+	</select>
+	
+	<insert id="gameInsert" parameterType="gameVO" >
+	<![CDATA[
+	INSERT INTO HFC.HFC_OMOK_GAME (
+		   B_MEMBER_NO
+		 , W_MEMBER_NO
+	) VALUES (
+	       #{b_member_no}
+	     , #{w_member_no}
+	)
+	]]>
+	</insert>
+	
+	<update id="matchUpdate" parameterType="gameVO">
+	<![CDATA[
+	UPDATE HFC.HFC_MEMBER_OMOK SET
+	       MATCH = MATCH + 1
+	 WHERE MEMBER_NO IN (#{b_member_no}, #{w_member_no})
+	]]>
+	</update>
 </mapper>

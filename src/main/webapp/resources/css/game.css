@@ -29,11 +29,11 @@ nav { width: 1024px; height: 50px; line-height: 50px; margin: 0 auto;}
 .beforeGo { position: absolute; margin-left: 34px; width: 612px; height: 612px; float: left; background-color: #FFFFFF; z-index: 9999;}
 .goBox { width: 300px; height: 300px; margin: 153px auto 0;}
 .otherPlayer { width: 300px; height: 30px; line-height: 30px;}
-.otherPlayer span { font-size: 20px; color: #333333; float: left; margin-left: 10px;}
-.otherPlayer form { width: 150px; height: 30px; float: right; margin-right: 10px;}
-.otherPlayer form input[type=text] { width: 150px; height: 30px; box-sizing: border-box; display: block; outline: none;}
+.otherPlayer h2 { font-size: 17px; color: #333333; float: left; margin-left: 10px;}
+.otherPlayer span { width: 150px; height: 30px; float: right; margin-right: 10px;}
+.otherPlayer span input[type=email] { width: 150px; height: 30px; box-sizing: border-box; display: block; outline: none;}
 .goStart { width: 150px; height: 150px; margin: 50px auto 0;}
-.goStart form input[type=button] { width: 150px; height: 150px; background-color: #85AF4B; border: none; border-radius: 150px; box-shadow: inset 0 18px 10px -3px #617F38;
+.goStart span input[type=submit] { width: 150px; height: 150px; background-color: #85AF4B; border: none; border-radius: 150px; box-shadow: inset 0 18px 10px -3px #617F38;
                                     color: #FFFFFF; font-size: 44px; font-weight: bold; text-shadow: 0 0 10px #FFFFFF; cursor: pointer; outline: none;}
 .game { width: 612px; height: 612px; float: left; background-color: #FFFFFF;}
 .game table { width: 612px; height: 616px; border-collapse: inherit; border: 3px solid #CCC;}

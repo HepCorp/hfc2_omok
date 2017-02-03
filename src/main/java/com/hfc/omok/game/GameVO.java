@@ -10,6 +10,8 @@ public class GameVO {
 	private int victory;
 	private Date input_dt;
 	private String stone;
+	private String w_user_name;
+	private String w_user_email;
 
 	public GameVO(int game_no, int b_member_no, int w_member_no, int victory, Date input_dt, String stone) {
 		super();
@@ -19,6 +21,22 @@ public class GameVO {
 		this.victory = victory;
 		this.input_dt = input_dt;
 		this.stone = stone;
+	}
+
+	public String getW_user_email() {
+		return w_user_email;
+	}
+
+	public void setW_user_email(String w_user_email) {
+		this.w_user_email = w_user_email;
+	}
+
+	public String getW_user_name() {
+		return w_user_name;
+	}
+
+	public void setW_user_name(String w_user_name) {
+		this.w_user_name = w_user_name;
 	}
 
 	public GameVO() {
