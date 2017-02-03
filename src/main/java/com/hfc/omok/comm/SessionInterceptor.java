@@ -14,7 +14,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		//임시로그인
-		request.getSession().setAttribute("memberVO2", new MemberVO(2, "윤수연", "rai007@naver", "123456", 10, "0.0.0.0", new Date(), new Date(), 0, 0, 0, 0, 0));
+		//request.getSession().setAttribute("memberVO2", new MemberVO(2, "윤수연", "rai007@naver", "123456", 10, "0.0.0.0", new Date(), new Date(), 0, 0, 0, 0, 0));
 		StringBuffer mainPage = request.getRequestURL();
 		MemberVO member = (MemberVO) request.getSession().getAttribute("memberVO2");
 		Boolean game = mainPage.toString().contains("/game/");

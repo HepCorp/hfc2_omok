@@ -49,7 +49,7 @@ function FormChkModule2(f){
     <div class="loginInfo">
         <ul>
             <li>${memberVO2.user_name } 님</li>
-            <li><a href="">로그아웃</a></li>
+            <li><a href="<c:url value='/index.do' />" onclick="return logout();">로그아웃</a></li>
         </ul>
     </div>
 </nav>

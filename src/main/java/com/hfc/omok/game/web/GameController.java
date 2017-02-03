@@ -25,6 +25,7 @@ import com.hfc.omok.game.GameVO;
 import com.hfc.omok.game.HistoryVO;
 import com.hfc.omok.game.service.GameService;
 import com.hfc.omok.member.MemberVO;
+import com.hfc.omok.member.service.MemberService;
 
 @Controller
 @RequestMapping("/game/*")
@@ -32,6 +33,9 @@ public class GameController {
 
 	@Autowired
 	GameService service;
+	
+	@Autowired
+	MemberService memService;
 	
 	GameVO game;
 	
@@ -140,6 +144,7 @@ public class GameController {
 		}
 		inVO.setW_member_no(w_member_no);
 		
+		memService.omokInsert(w_member_no);
 		service.gameInsert(inVO);
 		service.matchUpdate(inVO);
 		
