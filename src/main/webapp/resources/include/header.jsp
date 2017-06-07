@@ -28,7 +28,6 @@
 <meta property="og:url" content="localhost">
 <meta property="og:description" content="${browserTitle }">
 
-<link rel="stylesheet" href="<c:url value="/resources/css/common.css" />" />
 <link rel="shortcut icon" href="<c:url value="/resources/images/favicon.ico" />" />
 
 <script type="text/javascript" charset="UTF-8" src="<c:url value="/resources/js/jquery-3.1.1/jquery.js" />"></script>
